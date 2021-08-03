@@ -115,11 +115,13 @@ class Commands {
                     ? this.github.addLabel(arg.name)
                     : this.github.removeLabel(arg.name)));
             }
+
             console.log("Info argListCopy：", argListCopy.toString())
             if (command.name === 'assign'){
                 if(argListCopy === ''){
                     tasks.push(this.github.addAssignee(this.action.user.name));
                 }else{
+                    console.log("Info arg name：", arg.name)
                     tasks.push(...args.map((arg) => arg.task === 'add'
                         ? this.github.addAssignee(arg.name[0] === '@' ? arg.name.slice(1) : arg.name)
                         : this.github.removeAssignee(arg.name[0] === '@' ? arg.name.slice(1) : arg.name)));
